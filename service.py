@@ -251,7 +251,7 @@ def serve():
                 msg=str(e) if isinstance(e,(ValueError,KeyError)) else 'Service error; inspect private configuration'
                 body=canonical({'errors':[msg],'sendable_actions':[]}).encode(); self.send_response(400)
             self.send_header('Content-Type','application/json'); self.end_headers(); self.wfile.write(body)
-    ThreadingHTTPServer(('127.0.0.1',int(os.environ.get('PORT','8765'))),Handler).serve_forever()
+    ThreadingHTTPServer(('0.0.0.0',int(os.environ.get('PORT','8765'))),Handler).serve_forever()
 
 
 if __name__=='__main__': serve()
